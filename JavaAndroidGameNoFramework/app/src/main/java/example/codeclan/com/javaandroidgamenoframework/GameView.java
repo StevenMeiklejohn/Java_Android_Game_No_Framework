@@ -8,6 +8,8 @@ import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
+import java.util.ArrayList;
+
 //Game view provides a dedicated drawing surface.
 
 public class GameView extends SurfaceView implements Runnable {
@@ -23,6 +25,8 @@ public class GameView extends SurfaceView implements Runnable {
     private Paint paint;
     private Canvas canvas;
     private SurfaceHolder surfaceHolder;
+//   New arrayList of stars
+    private ArrayList<Star> stars = new ArrayList<Star>();
 
 
     //Class constructor
@@ -31,6 +35,12 @@ public class GameView extends SurfaceView implements Runnable {
         player = new Player(context, screenX, screenY);
         paint = new Paint();
         surfaceHolder = getHolder();
+//        add stars to arrayList
+        int numStars = 100;
+        for(int i = 0; i < numStars; i++){
+            Star s = new Star(screenX, screenY);
+            stars.add(s);
+        }
 
     }
 
@@ -49,6 +59,11 @@ public class GameView extends SurfaceView implements Runnable {
 //    update the co-ords of characters
     private void update() {
         player.update();
+//        update stars with player speed
+        for(Star s: stars){
+            s.update(player.getSpeed());
+        }
+
     }
 //    draw characters to canvas
 
@@ -59,6 +74,13 @@ public class GameView extends SurfaceView implements Runnable {
             canvas = surfaceHolder.lockCanvas();
 //            draw canvas background colour.
             canvas.drawColor(Color.BLACK);
+//            paint stars in white
+            paint.setColor(Color.WHITE);
+//            draw all stars
+            for(Star s: stars){
+                paint.setStrokeWidth(s.getStarWidth());
+                canvas.drawPoint(s.getX(), s.getY(), paint);
+            }
 //            Draw the player
             canvas.drawBitmap(
                     player.getBitmap(),
