@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
@@ -25,9 +26,9 @@ public class GameView extends SurfaceView implements Runnable {
 
 
     //Class constructor
-    public GameView(Context context) {
+    public GameView(Context context, int screenX, int screenY) {
         super(context);
-        player = new Player(context);
+        player = new Player(context, screenX, screenY);
         paint = new Paint();
         surfaceHolder = getHolder();
 
@@ -97,5 +98,22 @@ public class GameView extends SurfaceView implements Runnable {
         playing = true;
         gameThread = new Thread(this);
         gameThread.start();
+    }
+
+//Control of player sprite
+    @Override
+    public boolean onTouchEvent(MotionEvent motionEvent) {
+        switch (motionEvent.getAction() & MotionEvent.ACTION_MASK) {
+            case MotionEvent.ACTION_UP:
+//stop boosting when player releases button.
+                player.stopBoosting();
+                break;
+
+            case MotionEvent.ACTION_DOWN:
+//boost when screen pressed.
+                player.setBoosting();
+                break;
+        }
+        return true;
     }
 }
