@@ -1,12 +1,16 @@
 package example.codeclan.com.javaandroidgamenoframework;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
+import android.view.View;
+import android.widget.ImageView;
 
 import java.util.ArrayList;
 
@@ -21,7 +25,12 @@ public class GameView extends SurfaceView implements Runnable {
     private Thread gameThread = null;
 //    add player
     private Player player;
-//    Add objects used for drawing.
+    private Button btn_up, btn_down, btn_left, btn_right;
+    private Bitmap btn_upBitmap;
+    private Bitmap btn_downBitmap;
+    private Bitmap btn_leftBitmap;
+    private Bitmap btn_rightBitmap;
+    //    Add objects used for drawing.
     private Paint paint;
     private Canvas canvas;
     private SurfaceHolder surfaceHolder;
@@ -33,6 +42,16 @@ public class GameView extends SurfaceView implements Runnable {
     public GameView(Context context, int screenX, int screenY) {
         super(context);
         player = new Player(context, screenX, screenY);
+        btn_upBitmap = BitmapFactory.decodeResource(context.getResources(), R.drawable.up_white);
+        btn_downBitmap = BitmapFactory.decodeResource(context.getResources(), R.drawable.down_white);
+        btn_leftBitmap = BitmapFactory.decodeResource(context.getResources(), R.drawable.left_white);
+        btn_rightBitmap = BitmapFactory.decodeResource(context.getResources(), R.drawable.right_white);
+
+        btn_up = new Button(context, 75, 950, btn_upBitmap);
+        btn_down = new Button(context, 75, 750, btn_downBitmap);
+        btn_left = new Button(context, 1500, 950, btn_leftBitmap);
+        btn_right = new Button(context, 1700, 950, btn_rightBitmap);
+
         paint = new Paint();
         surfaceHolder = getHolder();
 //        add stars to arrayList
@@ -87,6 +106,35 @@ public class GameView extends SurfaceView implements Runnable {
                     player.getX(),
                     player.getY(),
                     paint);
+//            Draw the button up
+            canvas.drawBitmap(
+                    btn_up.getBitmap(),
+                    btn_up.getX(),
+                    btn_up.getY(),
+                    paint);
+//            unlock the canvas
+            //            Draw the button down
+            canvas.drawBitmap(
+                    btn_down.getBitmap(),
+                    btn_down.getX(),
+                    btn_down.getY(),
+                    paint);
+//            unlock the canvas
+
+            //            Draw the button left
+            canvas.drawBitmap(
+                    btn_left.getBitmap(),
+                    btn_left.getX(),
+                    btn_left.getY(),
+                    paint);
+//            unlock the canvas
+
+            //            Draw the button right
+            canvas.drawBitmap(
+                    btn_right.getBitmap(),
+                    btn_right.getX(),
+                    btn_right.getY(),
+                    paint);
 //            unlock the canvas
             surfaceHolder.unlockCanvasAndPost(canvas);
         }
@@ -122,7 +170,7 @@ public class GameView extends SurfaceView implements Runnable {
         gameThread.start();
     }
 
-//Control of player sprite
+    //Control of player sprite
     @Override
     public boolean onTouchEvent(MotionEvent motionEvent) {
         switch (motionEvent.getAction() & MotionEvent.ACTION_MASK) {
@@ -138,4 +186,11 @@ public class GameView extends SurfaceView implements Runnable {
         }
         return true;
     }
+
+    ////control button presses
+////    ImageView img = (ImageView) findViewById(R.id.imageView1);
+    public void setupButtonListeners() {
+        
+    }
+
 }
