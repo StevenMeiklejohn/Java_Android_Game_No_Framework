@@ -12,6 +12,7 @@ tools:context="example.codeclan.com.javaandroidgamenoframework.MainActivity">
 
 <ImageButton
     android:id="@+id/buttonPlay"
+    android:onClick="switchToGameView"
     android:background="@drawable/playnow"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"

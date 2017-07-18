@@ -7,9 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
 
-import static android.R.attr.start;
-
-public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+public class MainActivity extends AppCompatActivity {
 
     private ImageButton buttonPlay;
 
@@ -20,12 +18,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
 
-        buttonPlay = (ImageButton) findViewById(R.id.buttonPlay);
-        buttonPlay.setOnClickListener(this);
+//        buttonPlay = (ImageButton) findViewById(R.id.buttonPlay);
+//        buttonPlay.setOnClickListener(this);
     }
 
-    @Override
-    public void onClick(View v){
-        startActivity(new Intent(this, GameActivity.class));
+    public void switchToGameView(View view){
+        Intent intent = new Intent(getApplicationContext(), GameActivity.class);
+        startActivity(intent);
     }
 }
