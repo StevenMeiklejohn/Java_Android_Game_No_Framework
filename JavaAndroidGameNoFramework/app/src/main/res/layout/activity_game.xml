@@ -10,18 +10,20 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent" />
 
-    <ImageView
+
+
+    <ImageButton
         android:id="@+id/up"
         android:layout_width="100px"
         android:layout_height="100px"
         android:layout_gravity="center"
-        android:src="@drawable/up_white"
+        android:background="@drawable/up_white"
         android:layout_above="@+id/down"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_marginBottom="21dp" />
 
-    <ImageView
+    <ImageButton
         android:id="@+id/left"
         android:layout_width="100px"
         android:layout_height="100px"
@@ -31,9 +33,9 @@
         android:layout_marginRight="21dp"
         android:layout_toLeftOf="@+id/right"
         android:layout_toStartOf="@+id/right"
-        android:src="@drawable/left_white" />
+        android:background="@drawable/left_white" />
 
-    <ImageView
+    <ImageButton
         android:id="@+id/right"
         android:layout_width="100px"
         android:layout_height="100px"
@@ -42,7 +44,7 @@
         android:layout_alignTop="@+id/left"
         android:layout_centerHorizontal="true"
         android:layout_gravity="center"
-        android:src="@drawable/right_white" />
+        android:background="@drawable/right_white" />
 
     <ImageView
         android:id="@+id/down"
@@ -53,6 +55,6 @@
         android:layout_alignStart="@+id/up"
         android:layout_centerHorizontal="true"
         android:layout_gravity="center"
-        android:src="@drawable/down_white" />
+        android:background="@drawable/down_white" />
 
     </RelativeLayout>
