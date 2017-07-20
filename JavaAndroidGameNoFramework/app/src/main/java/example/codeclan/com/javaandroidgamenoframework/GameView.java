@@ -6,11 +6,17 @@ import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.Region;
+import android.os.Handler;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
+
+import static android.R.attr.data;
+import static android.R.attr.numStars;
 
 
 public class GameView extends SurfaceView implements Runnable{
@@ -30,13 +36,18 @@ public class GameView extends SurfaceView implements Runnable{
 
 
 
+
+
+
     //Class constructor
     public GameView(Context context, int screenX, int screenY, SurfaceView surfaceView) {
         super(context);
+//        player = new Player(context, screenX, screenY);
         player = new Player(context, screenX, screenY);
         paint = new Paint();
 //    Get surface holder from specified SurfaceView as passed in constructor
         surfaceHolder = surfaceView.getHolder();
+
 
 //    Add stars to arrayList
         int numStars = 100;
@@ -57,6 +68,36 @@ public class GameView extends SurfaceView implements Runnable{
                 control();
             }
         }
+
+     public void movePlayer(String direction){
+         if(direction == "up") {
+             player.setMovingUp();
+         }
+         if(direction == "down"){
+             player.setMovingDown();
+         }
+         if(direction == "left"){
+             player.setMovingLeft();
+         }
+         if(direction == "right"){
+             player.setMovingRight();
+         }
+     }
+
+    public void stopMovePlayer(String direction){
+        if(direction == "up") {
+            player.stopMovingUp();
+        }
+         if(direction == "down"){
+             player.stopMovingDown();
+         }
+         if(direction == "left"){
+             player.stopMovingLeft();
+         }
+         if(direction == "right"){
+             player.stopMovingRight();
+         }
+    }
 
 //    update the co-ords of characters
     private void update() {
@@ -123,22 +164,31 @@ public class GameView extends SurfaceView implements Runnable{
         gameThread.start();
     }
 
-    //Control of player sprite
-    @Override
-    public boolean onTouchEvent(MotionEvent motionEvent) {
-        switch (motionEvent.getAction() & MotionEvent.ACTION_MASK) {
-            case MotionEvent.ACTION_UP:
-//stop boosting when player releases button.
-                player.stopBoosting();
-                break;
+//    public static void upButtonTriggered(){
+//        System.out.println("Up Button Triggered");
+////        handler.post(new Runnable(){
+////            public void run(){
+////                Toast.makeText(context, "Up botton triggered!", Toast.LENGTH_SHORT).show();
+////            }
+////        });
+//    }
 
-            case MotionEvent.ACTION_DOWN:
-//boost when screen pressed.
-                player.setBoosting();
-                break;
-        }
-        return true;
-    }
+    //Control of player sprite
+//    @Override
+//    public boolean onTouchEvent(MotionEvent motionEvent) {
+//        switch (motionEvent.getAction() & MotionEvent.ACTION_MASK) {
+//            case MotionEvent.ACTION_UP:
+////stop boosting when player releases button.
+//                player.stopBoosting();
+//                break;
+//
+//            case MotionEvent.ACTION_DOWN:
+////boost when screen pressed.
+//                player.setBoosting();
+//                break;
+//        }
+//        return true;
+//    }
 
 
 }

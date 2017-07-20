@@ -19,6 +19,10 @@ public class Player {
     private int speed;
 //    boolean to track whether player is 'boosting (increasing y position, or not).
     private boolean boosting;
+    private boolean movingUp;
+    private boolean movingDown;
+    private boolean movingLeft;
+    private boolean movingRight;
 
 //    Variable to describe how quickly the ship descends when not 'boosting'.
     private final int GRAVITY = -10;
@@ -37,7 +41,7 @@ public class Player {
     public Player(Context context, int screenX, int screenY){
         x = 75;
         y = 50;
-        speed = 1;
+        speed = 5;
 //        Get bitmap from drawable resource
         bitmap = BitmapFactory.decodeResource(context.getResources(), R.drawable.player);
 //        initially set boosting to false.
@@ -57,35 +61,128 @@ public class Player {
         boosting = false;
     }
 
-//    update co-ordinate of character.
-    public void update(){
-//        increase speed if boosting.
-        if(boosting){
-            speed += 2;
-        }else{
-            speed -= 5;
-        }
-//        controlling top speed
-        if(speed > MAX_SPEED){
-            speed = MAX_SPEED;
-        }
-//        controlling min speed
-        if(speed < MIN_SPEED){
-            speed = MIN_SPEED;
-        }
-//        move ship down
-        y -= speed + GRAVITY;
-//        ensure ship does not leave screen
-        if(y < minY) {
-            y = minY;
-        }
-        if(y > maxY){
-            y = maxY;
-        }
+    public void setMovingUp(){
+        movingUp = true;
     }
 
-//    getters
+    public void stopMovingUp(){
+        movingUp = false;
+    }
 
+    public void setMovingDown(){
+        movingDown = true;
+    }
+
+    public void stopMovingDown(){
+        movingDown = false;
+    }
+
+    public void setMovingLeft(){
+        movingLeft = true;
+    }
+
+    public void stopMovingLeft(){
+        movingLeft = false;
+    }
+
+    public void setMovingRight(){
+        movingRight = true;
+    }
+
+    public void stopMovingRight(){
+        movingRight = false;
+    }
+
+//    update co-ordinate of character.
+    public void update() {
+//        increase speed if boosting.
+        if (movingUp) {
+            y -= speed;
+
+//        controlling top speed
+            if (speed > MAX_SPEED) {
+                speed = MAX_SPEED;
+            }
+//        controlling min speed
+            if (speed < MIN_SPEED) {
+                speed = MIN_SPEED;
+            }
+
+//        ensure ship does not leave screen
+            if (y < minY) {
+                y = minY;
+            }
+            if (y > maxY) {
+                y = maxY;
+            }
+        }
+
+        //        increase speed if boosting.
+        if (movingDown) {
+            y += speed;
+
+//        controlling top speed
+            if (speed > MAX_SPEED) {
+                speed = MAX_SPEED;
+            }
+//        controlling min speed
+            if (speed < MIN_SPEED) {
+                speed = MIN_SPEED;
+            }
+
+//        ensure ship does not leave screen
+            if (y < minY) {
+                y = minY;
+            }
+            if (y > maxY) {
+                y = maxY;
+            }
+        }
+
+        //        increase speed if boosting.
+        if (movingLeft) {
+            x -= speed;
+
+//        controlling top speed
+            if (speed > MAX_SPEED) {
+                speed = MAX_SPEED;
+            }
+//        controlling min speed
+            if (speed < MIN_SPEED) {
+                speed = MIN_SPEED;
+            }
+
+//        ensure ship does not leave screen
+            if (y < minY) {
+                y = minY;
+            }
+            if (y > maxY) {
+                y = maxY;
+            }
+        }
+
+        //        increase speed if boosting.
+        if (movingRight) {
+            x += speed;
+
+//        controlling top speed
+            if (speed > MAX_SPEED) {
+                speed = MAX_SPEED;
+            }
+//        controlling min speed
+            if (speed < MIN_SPEED) {
+                speed = MIN_SPEED;
+            }
+
+//        ensure ship does not leave screen
+            if (y < minY) {
+                y = minY;
+            }
+            if (y > maxY) {
+                y = maxY;
+            }
+        }
+    }
 
     public Bitmap getBitmap() {
         return bitmap;
