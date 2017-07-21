@@ -7,10 +7,12 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Region;
+import android.graphics.drawable.AnimationDrawable;
 import android.os.Handler;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -35,15 +37,20 @@ public class GameView extends SurfaceView implements Runnable{
     private ArrayList<Star> stars = new ArrayList<Star>();
 
 
+    private AnimationDrawable playerAnimation;
+
+
 
 
 
 
     //Class constructor
-    public GameView(Context context, int screenX, int screenY, SurfaceView surfaceView) {
+    public GameView(Context context, int screenX, int screenY, SurfaceView surfaceView, ImageView playerView) {
         super(context);
+        ImageView player_View = playerView;
 //        player = new Player(context, screenX, screenY);
-        player = new Player(context, screenX, screenY);
+        player = new Player(context, screenX, screenY, player_View);
+
         paint = new Paint();
 //    Get surface holder from specified SurfaceView as passed in constructor
         surfaceHolder = surfaceView.getHolder();
@@ -124,11 +131,11 @@ public class GameView extends SurfaceView implements Runnable{
                 canvas.drawPoint(s.getX(), s.getY(), paint);
             }
 //            Draw the player
-            canvas.drawBitmap(
-                    player.getBitmap(),
-                    player.getX(),
-                    player.getY(),
-                    paint);
+//            canvas.drawBitmap(
+//                    player.getBitmap(),
+//                    player.getX(),
+//                    player.getY(),
+//                    paint);
 //            unlock the canvas
             surfaceHolder.unlockCanvasAndPost(canvas);
         }
@@ -163,34 +170,6 @@ public class GameView extends SurfaceView implements Runnable{
         gameThread = new Thread(this);
         gameThread.start();
     }
-
-//    public static void upButtonTriggered(){
-//        System.out.println("Up Button Triggered");
-////        handler.post(new Runnable(){
-////            public void run(){
-////                Toast.makeText(context, "Up botton triggered!", Toast.LENGTH_SHORT).show();
-////            }
-////        });
-//    }
-
-    //Control of player sprite
-//    @Override
-//    public boolean onTouchEvent(MotionEvent motionEvent) {
-//        switch (motionEvent.getAction() & MotionEvent.ACTION_MASK) {
-//            case MotionEvent.ACTION_UP:
-////stop boosting when player releases button.
-//                player.stopBoosting();
-//                break;
-//
-//            case MotionEvent.ACTION_DOWN:
-////boost when screen pressed.
-//                player.setBoosting();
-//                break;
-//        }
-//        return true;
-//    }
-
-
 }
 
 

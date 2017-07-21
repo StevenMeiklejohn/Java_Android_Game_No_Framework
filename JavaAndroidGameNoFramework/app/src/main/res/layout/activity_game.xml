@@ -11,6 +11,12 @@
     android:layout_height="match_parent" />
 
 
+    <ImageView
+        android:id="@+id/player"
+        android:layout_width="120px"
+        android:layout_height="120px" />
+
+
 
     <ImageView
         android:id="@+id/up"
