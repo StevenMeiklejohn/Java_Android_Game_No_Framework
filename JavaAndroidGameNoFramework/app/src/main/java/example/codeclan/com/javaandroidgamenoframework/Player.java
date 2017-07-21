@@ -63,9 +63,9 @@ public class Player {
 
 //        initially set boosting to false.
 //        calculating max screen Y
-        maxY = screenY - 120;
+        maxY = screenY - 240;
 
-        minY = 120;
+        minY = 60;
         maxX = screenX - 120;
 
         minX = 60;
