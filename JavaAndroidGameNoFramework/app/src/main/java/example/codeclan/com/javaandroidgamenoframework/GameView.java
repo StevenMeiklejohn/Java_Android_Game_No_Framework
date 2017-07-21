@@ -29,6 +29,7 @@ public class GameView extends SurfaceView implements Runnable{
     private Thread gameThread = null;
     //    add player
     private Player player;
+    private Laser laser;
     //    Add objects used for drawing.
     private Paint paint;
     private Canvas canvas;
@@ -45,11 +46,13 @@ public class GameView extends SurfaceView implements Runnable{
 
 
     //Class constructor
-    public GameView(Context context, int screenX, int screenY, SurfaceView surfaceView, ImageView playerView) {
+    public GameView(Context context, int screenX, int screenY, SurfaceView surfaceView, ImageView playerView, ImageView laserView) {
         super(context);
         ImageView player_View = playerView;
+        ImageView laser_View = laserView;
 //        player = new Player(context, screenX, screenY);
         player = new Player(context, screenX, screenY, player_View);
+        laser = new Laser(context, screenX, screenY, laser_View);
 
         paint = new Paint();
 //    Get surface holder from specified SurfaceView as passed in constructor

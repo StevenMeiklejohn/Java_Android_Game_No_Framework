@@ -17,6 +17,7 @@ public class GameActivity extends AppCompatActivity {
     //    declare game view
     private GameView gameView;
     private ImageView playerView;
+    private ImageView laserView;
 
 
     @Override
@@ -34,7 +35,8 @@ public class GameActivity extends AppCompatActivity {
         SurfaceView surfaceView = (SurfaceView) findViewById(R.id.surface_view);
 //      Construct the gameView
         playerView = (ImageView) findViewById(R.id.player);
-        gameView = new GameView(this, size.x, size.y, surfaceView, playerView);
+        laserView = (ImageView) findViewById(R.id.laser);
+        gameView = new GameView(this, size.x, size.y, surfaceView, playerView, laserView);
 //      Run the gameView.
         gameView.run();
     }
