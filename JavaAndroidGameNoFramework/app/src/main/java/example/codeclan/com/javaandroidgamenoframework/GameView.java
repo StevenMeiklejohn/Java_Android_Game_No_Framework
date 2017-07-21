@@ -111,6 +111,9 @@ public class GameView extends SurfaceView implements Runnable{
         player.update();
 //        update stars with player speed
         for(Star s: stars){
+            if(player.getMovingRight()){
+                s.update(20);
+            }
             s.update(player.getSpeed());
         }
 
