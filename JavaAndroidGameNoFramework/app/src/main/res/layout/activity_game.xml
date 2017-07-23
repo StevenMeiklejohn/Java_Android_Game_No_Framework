@@ -19,8 +19,13 @@
 
     <ImageView
         android:id="@+id/laser"
-        android:layout_width="500px"
-        android:layout_height="32px" />
+        android:layout_width="2400px"
+        android:layout_height="64px" />
+
+    <ImageView
+        android:id="@+id/enemy1"
+        android:layout_width="240px"
+        android:layout_height="240px" />
 
 
 

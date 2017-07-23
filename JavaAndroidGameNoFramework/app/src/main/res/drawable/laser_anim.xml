@@ -52,44 +52,44 @@
     <item
         android:drawable="@drawable/laser16"
         android:duration="100" />
-    <item
-        android:drawable="@drawable/laser17"
-        android:duration="100" />
-    <item
-        android:drawable="@drawable/laser18"
-        android:duration="100" />
-    <item
-        android:drawable="@drawable/laser19"
-        android:duration="100" />
-    <item
-        android:drawable="@drawable/laser20"
-        android:duration="100" />
-    <item
-        android:drawable="@drawable/laser21"
-        android:duration="100" />
-    <item
-        android:drawable="@drawable/laser22"
-        android:duration="100" />
-    <item
-        android:drawable="@drawable/laser23"
-        android:duration="100" />
-    <item
-        android:drawable="@drawable/laser24"
-        android:duration="100" />
-    <item
-        android:drawable="@drawable/laser25"
-        android:duration="100" />
-    <item
-        android:drawable="@drawable/laser26"
-        android:duration="100" />
-    <item
-        android:drawable="@drawable/laser27"
-        android:duration="100" />
-    <item
-        android:drawable="@drawable/laser28"
-        android:duration="100" />
-    <item
-        android:drawable="@drawable/laser29"
-        android:duration="100" />
+    <!--<item-->
+        <!--android:drawable="@drawable/laser17"-->
+        <!--android:duration="100" />-->
+    <!--<item-->
+        <!--android:drawable="@drawable/laser18"-->
+        <!--android:duration="100" />-->
+    <!--<item-->
+        <!--android:drawable="@drawable/laser19"-->
+        <!--android:duration="100" />-->
+    <!--<item-->
+        <!--android:drawable="@drawable/laser20"-->
+        <!--android:duration="100" />-->
+    <!--<item-->
+        <!--android:drawable="@drawable/laser21"-->
+        <!--android:duration="100" />-->
+    <!--<item-->
+        <!--android:drawable="@drawable/laser22"-->
+        <!--android:duration="100" />-->
+    <!--<item-->
+        <!--android:drawable="@drawable/laser23"-->
+        <!--android:duration="100" />-->
+    <!--<item-->
+        <!--android:drawable="@drawable/laser24"-->
+        <!--android:duration="100" />-->
+    <!--<item-->
+        <!--android:drawable="@drawable/laser25"-->
+        <!--android:duration="100" />-->
+    <!--<item-->
+        <!--android:drawable="@drawable/laser26"-->
+        <!--android:duration="100" />-->
+    <!--<item-->
+        <!--android:drawable="@drawable/laser27"-->
+        <!--android:duration="100" />-->
+    <!--<item-->
+        <!--android:drawable="@drawable/laser28"-->
+        <!--android:duration="100" />-->
+    <!--<item-->
+        <!--android:drawable="@drawable/laser29"-->
+        <!--android:duration="100" />-->
 
 </animation-list>
