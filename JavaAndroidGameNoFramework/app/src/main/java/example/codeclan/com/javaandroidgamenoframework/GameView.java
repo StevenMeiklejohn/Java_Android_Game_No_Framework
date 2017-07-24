@@ -13,12 +13,14 @@ import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import java.util.ArrayList;
 
 import static android.R.attr.data;
 import static android.R.attr.numStars;
+import static example.codeclan.com.javaandroidgamenoframework.R.id.surface_layout;
 
 
 public class GameView extends SurfaceView implements Runnable{
@@ -29,7 +31,9 @@ public class GameView extends SurfaceView implements Runnable{
     private Thread gameThread = null;
     //    add player
     private Player player;
+    private ImageView enemy_type1_view;
     private Enemy1 enemy1;
+    private LinearLayout surface_layout;
 //    private Laser laser;
     //    Add objects used for drawing.
     private Paint paint;
@@ -48,15 +52,19 @@ public class GameView extends SurfaceView implements Runnable{
 
 
     //Class constructor
-    public GameView(Context context, int screenX, int screenY, SurfaceView surfaceView, ImageView playerView, ImageView laserView, ImageView enemy1View) {
+    public GameView(Context context, int screenX, int screenY, SurfaceView surfaceView, LinearLayout surfaceLayout, ImageView playerView, ImageView enemyType1View) {
         super(context);
         ImageView player_View = playerView;
-        ImageView laser_View = laserView;
-        ImageView enemy1_view = enemy1View;
-//        player = new Player(context, screenX, screenY);
+        ImageView enemy_type1_view = enemyType1View;
+        this.surface_layout = surfaceLayout;
+
+
         player = new Player(context, screenX, screenY, player_View);
-        enemy1 = new Enemy1(context, screenX, screenY, enemy1_view);
 //        laser = new Laser(context, screenX, screenY, laser_View);
+        enemy1 = new Enemy1(context, screenX, screenY, enemy_type1_view);
+
+
+        surface_layout.addView(enemy_type1_view);
 
 
         paint = new Paint();
@@ -83,6 +91,7 @@ public class GameView extends SurfaceView implements Runnable{
                 control();
             }
         }
+
 
      public void movePlayer(String direction){
          if(direction == "up") {
@@ -117,6 +126,7 @@ public class GameView extends SurfaceView implements Runnable{
 //    update the co-ords of characters
     private void update() {
         player.update();
+//        enemy1.update(12);
 //        update stars with player speed
         for(Star s: stars){
             if(player.getMovingRight()){

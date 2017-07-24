@@ -5,25 +5,24 @@
     android:layout_height="match_parent"
     tools:context="example.codeclan.com.javaandroidgamenoframework.GameActivity">
 
+
+
 <SurfaceView
     android:id="@+id/surface_view"
     android:layout_width="match_parent"
     android:layout_height="match_parent" />
 
+    <LinearLayout
+        android:id="@+id/surface_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+
+    </LinearLayout>
+
 
     <ImageView
         android:id="@+id/player"
-        android:layout_width="240px"
-        android:layout_height="240px" />
-
-
-    <ImageView
-        android:id="@+id/laser"
-        android:layout_width="2400px"
-        android:layout_height="64px" />
-
-    <ImageView
-        android:id="@+id/enemy1"
         android:layout_width="240px"
         android:layout_height="240px" />
 
@@ -73,5 +72,7 @@
         android:layout_centerHorizontal="true"
         android:layout_gravity="center"
         android:background="@drawable/down_white" />
+
+
 
     </RelativeLayout>

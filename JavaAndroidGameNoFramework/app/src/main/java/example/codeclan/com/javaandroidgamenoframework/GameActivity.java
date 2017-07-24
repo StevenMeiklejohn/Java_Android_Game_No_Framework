@@ -9,7 +9,10 @@ import android.view.Display;
 import android.view.MotionEvent;
 import android.view.SurfaceView;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 
+import java.util.ArrayList;
 
 
 public class GameActivity extends AppCompatActivity {
@@ -18,8 +21,7 @@ public class GameActivity extends AppCompatActivity {
     private GameView gameView;
     private ImageView playerView;
     private ImageView laserView;
-    private ImageView enemy1View;
-
+    private ImageView enemyType1View;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,11 +36,18 @@ public class GameActivity extends AppCompatActivity {
         display.getSize(size);
 //        Capture specific gameView in activity_game.
         SurfaceView surfaceView = (SurfaceView) findViewById(R.id.surface_view);
-//      Construct the gameView
+        LinearLayout surfaceLayout = (LinearLayout) findViewById(R.id.surface_layout);
+
+
         playerView = (ImageView) findViewById(R.id.player);
-        laserView = (ImageView) findViewById(R.id.laser);
-        enemy1View = (ImageView) findViewById(R.id.enemy1);
-        gameView = new GameView(this, size.x, size.y, surfaceView, playerView, laserView, enemy1View);
+
+        ImageView enemyType1View = new ImageView(this);
+
+
+
+
+
+        gameView = new GameView(this, size.x, size.y, surfaceView, surfaceLayout, playerView, enemyType1View);
 //      Run the gameView.
         gameView.run();
     }

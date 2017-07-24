@@ -5,6 +5,9 @@ import android.graphics.Bitmap;
 import android.graphics.drawable.AnimationDrawable;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+
+import java.util.Random;
 
 /**
  * Created by user on 08/07/2017.
@@ -36,7 +39,7 @@ public class Enemy1 {
     private final int MIN_SPEED = 1;
     private final int MAX_SPEED = 20;
 
-    private ImageView enemy1View;
+    private ImageView enemy1_view;
     private AnimationDrawable enemy1Animation;
 
 //    constructor
@@ -44,16 +47,29 @@ public class Enemy1 {
 //        x = screenX - 120;
 //        y = screenY - 120;
         speed = 10;
-        this.enemy1View = enemy1View;
+        this.enemy1_view = enemy1View;
 //        Get bitmap from drawable resource
 //        bitmap = BitmapFactory.decodeResource(context.getResources(), R.drawable.player);
 //        setup player animation
 
-        enemy1View.setBackgroundResource(R.drawable.enemy1_anim);
-        enemy1Animation = (AnimationDrawable) enemy1View.getBackground();
+//        ImageView newEnemy = new ImageView(this);
+//        newEnemy.setImageResource(R.drawable.enemy1_anim);
+//        picLL.addView(myImage);
+//        setContentView(picLL);
+
+//        setContentView(R.id.main);
+//        ImageView iv = (ImageView) findViewById(R.id.left);
+        int width = 60;
+        int height = 60;
+        LinearLayout.LayoutParams parms = new LinearLayout.LayoutParams(width,height);
+        enemy1_view.setLayoutParams(parms);
+        enemy1_view.setBackgroundResource(R.drawable.enemy1_anim);
+        enemy1Animation = (AnimationDrawable) enemy1_view.getBackground();
         enemy1Animation.start();
-        enemy1View.setX(300);
-        enemy1View.setY(300);
+        enemy1_view.setX(400);
+        enemy1_view.setY(400);
+
+
 
 
 
@@ -109,48 +125,23 @@ public class Enemy1 {
         movingRight = false;
     }
 
-    public Boolean getMovingRight(){
+    public Boolean getMovingRight() {
         return movingRight;
     }
 
 //    update co-ordinate of character.
-    public void update() {
-//        increase speed if boosting.
-        if (movingUp) {
-            if (enemy1View.getY() > minY) {
-                float currentPosition = enemy1View.getY();
-                enemy1View.setY(currentPosition -= speed);
-            }
 
-
-        }
-
-        //        increase speed if boosting.
-        if (movingDown) {
-            if (enemy1View.getY() < maxY) {
-                float currentPosition = enemy1View.getY();
-                enemy1View.setY(currentPosition += speed);
-            }
-
-
-        }
-
-        //        increase speed if boosting.
-        if (movingLeft) {
-            if (enemy1View.getX() > minX) {
-                float currentPosition = enemy1View.getX();
-                enemy1View.setX(currentPosition -= speed);
-            }
-
-        }
-
-        //        increase speed if boosting.
-        if (movingRight) {
-            if (enemy1View.getX() < maxX) {
-                float currentPosition = enemy1View.getX();
-                enemy1View.setX(currentPosition += 15);
-            }
-
+    public void update(int enemySpeed) {
+        //decreasing x coordinate so that enemy will move right to left
+        x -= enemySpeed;
+        x -= speed;
+        //if the enemy reaches the left edge
+        if (x < minX) {
+            //adding the enemy again to the right edge
+            Random generator = new Random();
+            speed = generator.nextInt(10) + 10;
+            x = maxX;
+            y = generator.nextInt(maxY);
         }
     }
 
