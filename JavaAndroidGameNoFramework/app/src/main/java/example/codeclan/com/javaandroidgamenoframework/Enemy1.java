@@ -59,8 +59,8 @@ public class Enemy1 {
 
 //        setContentView(R.id.main);
 //        ImageView iv = (ImageView) findViewById(R.id.left);
-        int width = 60;
-        int height = 60;
+        int width = 240;
+        int height = 240;
         LinearLayout.LayoutParams parms = new LinearLayout.LayoutParams(width,height);
         enemy1_view.setLayoutParams(parms);
         enemy1_view.setBackgroundResource(R.drawable.enemy1_anim);
