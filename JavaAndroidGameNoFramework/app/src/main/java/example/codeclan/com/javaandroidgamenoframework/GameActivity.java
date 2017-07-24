@@ -20,8 +20,7 @@ public class GameActivity extends AppCompatActivity {
     //    declare game view
     private GameView gameView;
     private ImageView playerView;
-    private ImageView laserView;
-    private ImageView enemyType1View;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,15 +37,8 @@ public class GameActivity extends AppCompatActivity {
         SurfaceView surfaceView = (SurfaceView) findViewById(R.id.surface_view);
         LinearLayout surfaceLayout = (LinearLayout) findViewById(R.id.surface_layout);
 
-
         playerView = (ImageView) findViewById(R.id.player);
-
         ImageView enemyType1View = new ImageView(this);
-
-
-
-
-
         gameView = new GameView(this, size.x, size.y, surfaceView, surfaceLayout, playerView, enemyType1View);
 //      Run the gameView.
         gameView.run();

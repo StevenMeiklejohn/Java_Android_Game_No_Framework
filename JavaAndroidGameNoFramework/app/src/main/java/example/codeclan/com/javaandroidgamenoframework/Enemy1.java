@@ -46,19 +46,8 @@ public class Enemy1 {
     public Enemy1(Context context, int screenX, int screenY, ImageView enemy1View){
 //        x = screenX - 120;
 //        y = screenY - 120;
-        speed = 10;
+        speed = 12;
         this.enemy1_view = enemy1View;
-//        Get bitmap from drawable resource
-//        bitmap = BitmapFactory.decodeResource(context.getResources(), R.drawable.player);
-//        setup player animation
-
-//        ImageView newEnemy = new ImageView(this);
-//        newEnemy.setImageResource(R.drawable.enemy1_anim);
-//        picLL.addView(myImage);
-//        setContentView(picLL);
-
-//        setContentView(R.id.main);
-//        ImageView iv = (ImageView) findViewById(R.id.left);
         int width = 240;
         int height = 240;
         LinearLayout.LayoutParams parms = new LinearLayout.LayoutParams(width,height);
@@ -66,10 +55,9 @@ public class Enemy1 {
         enemy1_view.setBackgroundResource(R.drawable.enemy1_anim);
         enemy1Animation = (AnimationDrawable) enemy1_view.getBackground();
         enemy1Animation.start();
+
         enemy1_view.setX(400);
         enemy1_view.setY(400);
-
-
 
 
 
@@ -131,17 +119,19 @@ public class Enemy1 {
 
 //    update co-ordinate of character.
 
-    public void update(int enemySpeed) {
+    public void update() {
         //decreasing x coordinate so that enemy will move right to left
-        x -= enemySpeed;
-        x -= speed;
+
+        float currentPosition = enemy1_view.getX();
+        enemy1_view.setX(currentPosition -= speed);
+//        x -= speed;
         //if the enemy reaches the left edge
-        if (x < minX) {
+        if (enemy1_view.getX() < minX - 240) {
             //adding the enemy again to the right edge
             Random generator = new Random();
             speed = generator.nextInt(10) + 10;
-            x = maxX;
-            y = generator.nextInt(maxY);
+            enemy1_view.setX(maxX);
+            enemy1_view.setY(generator.nextInt(maxY));
         }
     }
 

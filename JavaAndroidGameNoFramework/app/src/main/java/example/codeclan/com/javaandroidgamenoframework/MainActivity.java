@@ -18,9 +18,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
-
-//        buttonPlay = (ImageButton) findViewById(R.id.buttonPlay);
-//        buttonPlay.setOnClickListener(this);
     }
 
     public void switchToGameView(View view){

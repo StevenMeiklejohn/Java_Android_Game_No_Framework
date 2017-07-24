@@ -49,9 +49,6 @@ public class Player {
 //        y = screenY - 120;
         speed = 10;
         this.playerView = playerView;
-//        Get bitmap from drawable resource
-//        bitmap = BitmapFactory.decodeResource(context.getResources(), R.drawable.player);
-//        setup player animation
 
         playerView.setBackgroundResource(R.drawable.player_anim);
         playerAnimation = (AnimationDrawable) playerView.getBackground();
@@ -64,10 +61,8 @@ public class Player {
 //        initially set boosting to false.
 //        calculating max screen Y
         maxY = screenY - 240;
-
         minY = 60;
         maxX = screenX - 120;
-
         minX = 60;
         boosting = false;
     }
@@ -125,22 +120,6 @@ public class Player {
                 float currentPosition = playerView.getY();
                 playerView.setY(currentPosition -= speed);
             }
-//            y -= speed;
-
-////        controlling top speed
-//            if (speed > MAX_SPEED) {
-//                speed = MAX_SPEED;
-//            }
-////        controlling min speed
-//            if (speed < MIN_SPEED) {
-//                speed = MIN_SPEED;
-//            }
-
-//        ensure ship does not leave screen
-//            if (playerView.getTop() <= minY) {
-//                playerView.setY(minY + playerView.getHeight());
-//            }
-
         }
 
         //        increase speed if boosting.
@@ -149,20 +128,6 @@ public class Player {
                 float currentPosition = playerView.getY();
                 playerView.setY(currentPosition += speed);
             }
-
-////        controlling top speed
-//            if (speed > MAX_SPEED) {
-//                speed = MAX_SPEED;
-//            }
-////        controlling min speed
-//            if (speed < MIN_SPEED) {
-//                speed = MIN_SPEED;
-//            }
-
-//        ensure ship does not leave screen
-//            if (playerView.getBottom() >= maxY) {
-//                playerView.setY(maxY - playerView.getHeight());
-//            }
         }
 
         //        increase speed if boosting.
@@ -171,60 +136,15 @@ public class Player {
                 float currentPosition = playerView.getX();
                 playerView.setX(currentPosition -= speed);
             }
-
-////        controlling top speed
-//            if (speed > MAX_SPEED) {
-//                speed = MAX_SPEED;
-//            }
-////        controlling min speed
-//            if (speed < MIN_SPEED) {
-//                speed = MIN_SPEED;
-//            }
-//
-////        ensure ship does not leave screen
-//            if (playerView.getLeft() <= minX) {
-//                playerView.setX(minX + playerView.getWidth());
-//            }
         }
-
         //        increase speed if boosting.
         if (movingRight) {
             if (playerView.getX() < maxX) {
                 float currentPosition = playerView.getX();
                 playerView.setX(currentPosition += 15);
             }
-
-
-////        controlling top speed
-//            if (speed > MAX_SPEED) {
-//                speed = MAX_SPEED;
-//            }
-////        controlling min speed
-//            if (speed < MIN_SPEED) {
-//                speed = MIN_SPEED;
-//            }
-
-//        ensure ship does not leave screen
-//            if (playerView.getX() < minX) {
-//                playerView.setX(minX);
-//            }
-//            if (playerView.getRight() >= maxX) {
-//                playerView.setX(maxX - playerView.getWidth());
-//            }
         }
     }
-
-//    public Bitmap getBitmap() {
-//        return bitmap;
-//    }
-//
-//    public int getX() {
-//        return x;
-//    }
-//
-//    public int getY() {
-//        return y;
-//    }
 
     public int getSpeed() {
         return speed;

@@ -34,7 +34,6 @@ public class GameView extends SurfaceView implements Runnable{
     private ImageView enemy_type1_view;
     private Enemy1 enemy1;
     private LinearLayout surface_layout;
-//    private Laser laser;
     //    Add objects used for drawing.
     private Paint paint;
     private Canvas canvas;
@@ -60,17 +59,12 @@ public class GameView extends SurfaceView implements Runnable{
 
 
         player = new Player(context, screenX, screenY, player_View);
-//        laser = new Laser(context, screenX, screenY, laser_View);
         enemy1 = new Enemy1(context, screenX, screenY, enemy_type1_view);
 
-
         surface_layout.addView(enemy_type1_view);
-
-
         paint = new Paint();
 //    Get surface holder from specified SurfaceView as passed in constructor
         surfaceHolder = surfaceView.getHolder();
-
 
 //    Add stars to arrayList
         int numStars = 100;
@@ -126,7 +120,7 @@ public class GameView extends SurfaceView implements Runnable{
 //    update the co-ords of characters
     private void update() {
         player.update();
-//        enemy1.update(12);
+        enemy1.update();
 //        update stars with player speed
         for(Star s: stars){
             if(player.getMovingRight()){
@@ -151,13 +145,6 @@ public class GameView extends SurfaceView implements Runnable{
                 paint.setStrokeWidth(s.getStarWidth());
                 canvas.drawPoint(s.getX(), s.getY(), paint);
             }
-//            Draw the player
-//            canvas.drawBitmap(
-//                    player.getBitmap(),
-//                    player.getX(),
-//                    player.getY(),
-//                    paint);
-//            unlock the canvas
             surfaceHolder.unlockCanvasAndPost(canvas);
         }
     }
