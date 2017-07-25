@@ -55,21 +55,25 @@ public class Enemy1 {
         enemy1_view.setBackgroundResource(R.drawable.enemy1_anim);
         enemy1Animation = (AnimationDrawable) enemy1_view.getBackground();
         enemy1Animation.start();
-
-        enemy1_view.setX(400);
-        enemy1_view.setY(400);
-
-
-
-//        initially set boosting to false.
+        //        initially set boosting to false.
 //        calculating max screen Y
         maxY = screenY - 240;
-
         minY = 60;
         maxX = screenX - 120;
-
         minX = 60;
         boosting = false;
+
+        enemy1_view.setX(maxX);
+        enemy1_view.setY(getRandomYStart());
+
+
+
+    }
+
+    public int getRandomYStart(){
+        Random ranGen = new Random();
+        int number = ranGen.nextInt(maxY);
+        return number;
     }
 
 

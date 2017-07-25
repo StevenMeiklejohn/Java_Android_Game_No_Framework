@@ -33,6 +33,7 @@ public class GameView extends SurfaceView implements Runnable{
     private Player player;
     private ImageView enemy_type1_view;
     private Enemy1 enemy1;
+    private Enemy1 enemy2;
     private LinearLayout surface_layout;
     //    Add objects used for drawing.
     private Paint paint;
@@ -60,6 +61,8 @@ public class GameView extends SurfaceView implements Runnable{
 
         player = new Player(context, screenX, screenY, player_View);
         enemy1 = new Enemy1(context, screenX, screenY, enemy_type1_view);
+//        enemy2 = new Enemy1(context, screenX, screenY, enemy_type1_view);
+
 
         surface_layout.addView(enemy_type1_view);
         paint = new Paint();
