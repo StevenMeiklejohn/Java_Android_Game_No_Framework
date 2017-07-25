@@ -38,8 +38,20 @@ public class GameActivity extends AppCompatActivity {
         LinearLayout surfaceLayout = (LinearLayout) findViewById(R.id.surface_layout);
 
         playerView = (ImageView) findViewById(R.id.player);
-        ImageView enemyType1View = new ImageView(this);
-        gameView = new GameView(this, size.x, size.y, surfaceView, surfaceLayout, playerView, enemyType1View);
+        ImageView enemyType1View1 = new ImageView(this);
+        ImageView enemyType1View2 = new ImageView(this);
+        ImageView enemyType1View3 = new ImageView(this);
+        ImageView enemyType1View4 = new ImageView(this);
+        ImageView enemyType1View5 = new ImageView(this);
+        ArrayList enemyViews = new ArrayList<ImageView>();
+        enemyViews.add(enemyType1View1);
+        enemyViews.add(enemyType1View2);
+        enemyViews.add(enemyType1View3);
+        enemyViews.add(enemyType1View4);
+        enemyViews.add(enemyType1View5);
+
+
+        gameView = new GameView(this, size.x, size.y, surfaceView, surfaceLayout, playerView, enemyViews);
 //      Run the gameView.
         gameView.run();
     }

@@ -41,6 +41,7 @@ public class GameView extends SurfaceView implements Runnable{
     private SurfaceHolder surfaceHolder;
     //   New arrayList of stars
     private ArrayList<Star> stars = new ArrayList<Star>();
+    private ArrayList<Enemy1> enemyObjects = new ArrayList<Enemy1>();
 
 
     private AnimationDrawable playerAnimation;
@@ -52,19 +53,25 @@ public class GameView extends SurfaceView implements Runnable{
 
 
     //Class constructor
-    public GameView(Context context, int screenX, int screenY, SurfaceView surfaceView, LinearLayout surfaceLayout, ImageView playerView, ImageView enemyType1View) {
+    public GameView(Context context, int screenX, int screenY, SurfaceView surfaceView, LinearLayout surfaceLayout, ImageView playerView, ArrayList<ImageView> enemyViews) {
         super(context);
-        ImageView player_View = playerView;
-        ImageView enemy_type1_view = enemyType1View;
         this.surface_layout = surfaceLayout;
+        ImageView player_View = playerView;
+        ArrayList<ImageView> enemy_views = enemyViews;
+        ArrayList<Enemy1> enemyObjects = new ArrayList<Enemy1>();
+        for(ImageView enemyV: enemy_views){
+            surface_layout.addView(enemyV);
+           Enemy1 enemy = new Enemy1(context, screenX, screenY, enemyV);
+            this.enemyObjects.add(enemy);
+        }
+
 
 
         player = new Player(context, screenX, screenY, player_View);
-        enemy1 = new Enemy1(context, screenX, screenY, enemy_type1_view);
-//        enemy2 = new Enemy1(context, screenX, screenY, enemy_type1_view);
+
+//        surface_layout.addView(enemy_type1_view);
 
 
-        surface_layout.addView(enemy_type1_view);
         paint = new Paint();
 //    Get surface holder from specified SurfaceView as passed in constructor
         surfaceHolder = surfaceView.getHolder();
@@ -88,6 +95,8 @@ public class GameView extends SurfaceView implements Runnable{
                 control();
             }
         }
+
+
 
 
      public void movePlayer(String direction){
@@ -123,7 +132,9 @@ public class GameView extends SurfaceView implements Runnable{
 //    update the co-ords of characters
     private void update() {
         player.update();
-        enemy1.update();
+        for(Enemy1 enemy: enemyObjects){
+            enemy.update();
+        }
 //        update stars with player speed
         for(Star s: stars){
             if(player.getMovingRight()){
