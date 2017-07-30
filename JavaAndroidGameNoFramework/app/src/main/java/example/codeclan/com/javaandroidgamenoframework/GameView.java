@@ -6,6 +6,7 @@ import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.Rect;
 import android.graphics.Region;
 import android.graphics.drawable.AnimationDrawable;
 import android.os.Handler;
@@ -134,6 +135,11 @@ public class GameView extends SurfaceView implements Runnable{
         player.update();
         for(Enemy1 enemy: enemyObjects){
             enemy.update();
+            //if collision occurrs with player
+            if (Rect.intersects(player.getDetectCollision(), enemy.getDetectCollision())) {
+                //moving enemy outside the left edge
+                enemy.setX(-300);
+            }
         }
 //        update stars with player speed
         for(Star s: stars){
@@ -142,7 +148,6 @@ public class GameView extends SurfaceView implements Runnable{
             }
             s.update(player.getSpeed());
         }
-
     }
 //    draw characters to canvas
     private void draw() {

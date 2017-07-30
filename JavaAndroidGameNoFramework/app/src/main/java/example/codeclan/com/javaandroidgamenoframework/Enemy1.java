@@ -2,12 +2,16 @@ package example.codeclan.com.javaandroidgamenoframework;
 
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.graphics.Rect;
 import android.graphics.drawable.AnimationDrawable;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import java.util.Random;
+
+import static example.codeclan.com.javaandroidgamenoframework.R.drawable.enemy;
+import static example.codeclan.com.javaandroidgamenoframework.R.drawable.enemy1;
 
 /**
  * Created by user on 08/07/2017.
@@ -29,7 +33,9 @@ public class Enemy1 {
     private boolean movingLeft;
     private boolean movingRight;
 
-//    Ensure player does not leave the screen.
+    private int width, height;
+
+//    Ensure enemy does not leave the screen.
     private int maxX;
     private int minX;
     private int maxY;
@@ -41,6 +47,8 @@ public class Enemy1 {
 
     private ImageView enemy1_view;
     private AnimationDrawable enemy1Animation;
+
+    private Rect detectCollision;
 
 //    constructor
     public Enemy1(Context context, int screenX, int screenY, ImageView enemy1View){
@@ -65,10 +73,11 @@ public class Enemy1 {
 
         enemy1_view.setX(maxX);
         enemy1_view.setY(getRandomYStart());
-
-
-
+//      initialize rect object
+        detectCollision = new Rect((int) enemy1_view.getX(), (int) enemy1_view.getY(), 240, 240);
     }
+
+
 
     public int getRandomYStart(){
         Random ranGen = new Random();
@@ -76,50 +85,66 @@ public class Enemy1 {
         return number;
     }
 
-
-    public void setBoosting(){
-        boosting = true;
+    public float getX(){
+        return enemy1_view.getX();
     }
 
-    public void stopBoosting(){
-        boosting = false;
+    public void setX(float num){
+        this.enemy1_view.setX(num);
     }
 
-    public void setMovingUp(){
-        movingUp = true;
+    public float getY(){
+        return enemy1_view.getY();
     }
 
-    public void stopMovingUp(){
-        movingUp = false;
+    public Rect getDetectCollision() {
+        return detectCollision;
     }
 
-    public void setMovingDown(){
-        movingDown = true;
-    }
-
-    public void stopMovingDown(){
-        movingDown = false;
-    }
-
-    public void setMovingLeft(){
-        movingLeft = true;
-    }
-
-    public void stopMovingLeft(){
-        movingLeft = false;
-    }
-
-    public void setMovingRight(){
-        movingRight = true;
-    }
-
-    public void stopMovingRight(){
-        movingRight = false;
-    }
-
-    public Boolean getMovingRight() {
-        return movingRight;
-    }
+//
+//    public void setBoosting(){
+//        boosting = true;
+//    }
+//
+//    public void stopBoosting(){
+//        boosting = false;
+//    }
+//
+//    public void setMovingUp(){
+//        movingUp = true;
+//    }
+//
+//    public void stopMovingUp(){
+//        movingUp = false;
+//    }
+//
+//    public void setMovingDown(){
+//        movingDown = true;
+//    }
+//
+//    public void stopMovingDown(){
+//        movingDown = false;
+//    }
+//
+//    public void setMovingLeft(){
+//        movingLeft = true;
+//    }
+//
+//    public void stopMovingLeft(){
+//        movingLeft = false;
+//    }
+//
+//    public void setMovingRight(){
+//        movingRight = true;
+//    }
+//
+//    public void stopMovingRight(){
+//        movingRight = false;
+//    }
+//
+//    public Boolean getMovingRight() {
+//        return movingRight;
+//    }
 
 //    update co-ordinate of character.
 
@@ -137,6 +162,10 @@ public class Enemy1 {
             enemy1_view.setX(maxX);
             enemy1_view.setY(generator.nextInt(maxY));
         }
+        detectCollision.left = (int) enemy1_view.getX();
+        detectCollision.right = (int) enemy1_view.getX() + 240;
+        detectCollision.top = (int) enemy1_view.getY();
+        detectCollision.bottom = (int) enemy1_view.getY() + 240;
     }
 
 

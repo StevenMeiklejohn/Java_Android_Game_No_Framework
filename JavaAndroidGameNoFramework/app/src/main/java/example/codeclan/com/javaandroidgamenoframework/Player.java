@@ -3,12 +3,14 @@ package example.codeclan.com.javaandroidgamenoframework;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Rect;
 import android.graphics.drawable.AnimationDrawable;
 import android.media.Image;
 import android.widget.ImageView;
 
 import static android.R.attr.max;
 import static android.R.attr.min;
+import static android.R.attr.width;
 
 /**
  * Created by user on 08/07/2017.
@@ -36,6 +38,9 @@ public class Player {
     private int maxY;
     private int minY;
 
+    private int width, height;
+    private Rect detectCollision;
+
 //    limit ship speed
     private final int MIN_SPEED = 1;
     private final int MAX_SPEED = 20;
@@ -49,7 +54,8 @@ public class Player {
 //        y = screenY - 120;
         speed = 10;
         this.playerView = playerView;
-
+        int width = 240;
+        int height = 240;
         playerView.setBackgroundResource(R.drawable.player_anim);
         playerAnimation = (AnimationDrawable) playerView.getBackground();
         playerAnimation.start();
@@ -65,6 +71,8 @@ public class Player {
         maxX = screenX - 120;
         minX = 60;
         boosting = false;
+
+        detectCollision = new Rect((int) playerView.getX(), (int) playerView.getY(), 240, 240);
     }
 
 
@@ -144,6 +152,16 @@ public class Player {
                 playerView.setX(currentPosition += 15);
             }
         }
+        //adding top, left, bottom and right to the rect object
+        detectCollision.left = (int) playerView.getX();
+        detectCollision.top = (int) playerView.getY();
+        detectCollision.right = (int) playerView.getX() + 240;
+        detectCollision.bottom = (int) playerView.getY() + 240;
+    }
+
+    //one more getter for getting the rect object
+    public Rect getDetectCollision() {
+        return detectCollision;
     }
 
     public int getSpeed() {
